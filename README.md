@@ -4,7 +4,7 @@
 
 This repository contains the specification for the Simple Signal Replication Protocol (SSRP).
 
-- Specification: https://timdaub.github.io/ssrp/
+- Specification: https://timdaub.github.io/SSRP/
 - Source: [./SOURCE.md](./SOURCE.md)
 
 ## Contributing
