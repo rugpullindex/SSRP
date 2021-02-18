@@ -1,0 +1,39 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Simple Signal Replication Protocol Specification</title>
+    <link rel="stylesheet" href="./katex.min.css">
+    <link rel="stylesheet" href="./github-markdown.css">
+  </head>
+  <body>
+    <h1>SSRP - Simple Signal Replication Protocol</h1>
+<h2>Abstract</h2>
+<p>The Simple Signal Replication Protocol is an application-level protocol with
+the lightness and speed necessary for distributed and collaborative information
+systems. It is a generic and stateless protocol which can be used for many
+tasks, such as lossless data replication or querying for a data's subset.  SSRP
+is built with HTTP to make implementation accessible.</p>
+<h2>Introduction</h2>
+<h3>Purpose</h3>
+<p>The Simple Signal Replication Protocol is an application-level protocol with
+the lightness and speed necessary for distributed and collaborative information
+systems. It allows the lossless transport of a digital signal from a sender to
+a receiver.</p>
+<h2>Definition</h2>
+<h3>Theoretical Model of a Signal</h3>
+<p>A digital signal is used to represent data as a sequence of discrete values.
+In theoretical terms, a signal is modeled within a vector space <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mi>d</mi></msup></mrow><annotation encoding="application/x-tex">R^d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.849108em;"></span><span class="strut bottom" style="height:0.849108em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>, where
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">d</span></span></span></span> represents the function's domain. Commonly-used domains include <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">d=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">d</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span> to
+model time series signals, or <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">d=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.69444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">d</span><span class="mrel">=</span><span class="mord mathrm">2</span></span></span></span> to model signals dependent on location [1].
+Within the scope of this work, we assume that the domain of a digital signal is
+descrete, hence representing a finite number of isolated points.</p>
+<h2>References</h2>
+<ul>
+<li>1: https://de.wikipedia.org/w/index.php?title=Signal&amp;oldid=207389957</li>
+</ul>
+
+  </body>
+</html>
+

@@ -1,0 +1,35 @@
+{
+  "name": "ssrp",
+  "version": "0.0.1",
+  "description": "The Simple Signal Replication Protocol is an application-level protocol with the lightness and speed necessary for distributed and collaborative information systems.",
+  "main": "./scripts/render.mjs",
+  "scripts": {
+    "render": "node ./scripts/render.mjs"
+  },
+  "pre-commit": ["render"],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TimDaub/ssrp.git"
+  },
+  "keywords": [
+    "simple",
+    "signal",
+    "processing",
+    "transport",
+    "protocol",
+    "replication",
+    "definition",
+    "data"
+  ],
+  "author": "Tim Daubenschütz <tim@daubenschuetz.de> (https://timdaub.github.io/)",
+  "bugs": {
+    "url": "https://github.com/TimDaub/ssrp/issues"
+  },
+  "dependencies": {
+    "markdown-it": "12.0.4",
+    "markdown-it-katex": "2.0.3"
+  },
+  "devDependencies": {
+    "pre-commit": "1.2.2"
+  }
+}
