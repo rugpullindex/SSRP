@@ -2,6 +2,7 @@
 <!doctype html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8"/>
     <title>Simple Signal Replication Protocol Specification</title>
     <link rel="stylesheet" href="./katex.min.css">
@@ -12,9 +13,11 @@
 <h2>Abstract</h2>
 <p>The Simple Signal Replication Protocol is an application-level protocol with
 the lightness and speed necessary for distributed and collaborative information
-systems. It is a generic and stateless protocol which can be used for many
-tasks, such as lossless data replication or querying for a data's subset.  SSRP
-is built with HTTP to make implementation accessible.</p>
+systems. It is a generic, stateless and asynchronous protocol which can be used
+for many tasks, such as lossless signal replication or querying for subsets of
+signals. It's asynchronous and stateless properties allows SSRP peers to update
+their replicas independently and concurrently without coordination between
+replicas. SSRP is built on top of HTTP to make implementation accessible.</p>
 <h2>Introduction</h2>
 <h3>Purpose</h3>
 <p>The Simple Signal Replication Protocol is an application-level protocol with
@@ -29,9 +32,25 @@ where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.
 to model time series signals, or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">d=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> to model signals dependent on location
 [1].  Within the scope of this work, we assume that the domain of a digital
 signal is descrete, hence representing a finite number of isolated points.</p>
+<h2>Sampling</h2>
+<p>Sampling is the process of reducing a continous-time source signal into a
+discrete-time destination signal by repeatedly polling the source signal's set
+of destinations given an valid input in the source signal's domain [4].</p>
+<h2>Aliasing</h2>
+<p>Aliasing is an effect appearing in signal sampling. It can lead to a
+destination signal becoming indistinguishable from the source signal [3].</p>
+<h2>Nyquist–Shannon Sampling Theorem</h2>
+<p>Shannon's theorem states that if a function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span> contains no frequencies
+higher than <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> hertz than it can be determined by polling a series of points
+spaced <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mi>B</mi></mrow><annotation encoding="application/x-tex">1 / 2B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> seconds apart. It can, hence, be assumed that taking more than
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>B</mi></mrow><annotation encoding="application/x-tex">2B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> samples of a function <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span> with a frequency no higher than <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> hertz
+yields a perfect reconstruction <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">f_s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> through sampling [2].</p>
 <h2>References</h2>
 <ul>
 <li>1: https://de.wikipedia.org/w/index.php?title=Signal&amp;oldid=207389957</li>
+<li>2: https://en.wikipedia.org/w/index.php?title=Nyquist%E2%80%93Shannon_sampling_theorem&amp;oldid=1002056076</li>
+<li>3: https://en.wikipedia.org/w/index.php?title=Aliasing&amp;oldid=996719536</li>
+<li>4: https://en.wikipedia.org/w/index.php?title=Sampling_(signal_processing)&amp;oldid=1000373153</li>
 </ul>
 
   </body>
