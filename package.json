@@ -4,9 +4,10 @@
   "description": "The Simple Signal Replication Protocol is an application-level protocol with the lightness and speed necessary for distributed and collaborative information systems.",
   "main": "./scripts/render.mjs",
   "scripts": {
-    "render": "node ./scripts/render.mjs"
+    "md:render": "node ./scripts/render.mjs",
+    "git:add": "git update-index --add ./index.html"
   },
-  "pre-commit": ["render"],
+  "pre-commit": "md:render, git:add",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/TimDaub/ssrp.git"
