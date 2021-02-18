@@ -26,11 +26,9 @@
   "bugs": {
     "url": "https://github.com/TimDaub/ssrp/issues"
   },
-  "dependencies": {
-    "markdown-it": "12.0.4",
-    "markdown-it-katex": "2.0.3"
-  },
   "devDependencies": {
-    "pre-commit": "1.2.2"
+    "@iktakahiro/markdown-it-katex": "4.0.1",
+    "pre-commit": "1.2.2",
+    "markdown-it": "12.0.4"
   }
 }

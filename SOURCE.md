@@ -22,11 +22,11 @@ a receiver.
 ### Theoretical Model of a Signal
 
 A digital signal is used to represent data as a sequence of discrete values.
-In theoretical terms, a signal is modeled within a vector space $R^d$, where
-$d$ represents the function's domain. Commonly-used domains include $d=1$ to
-model time series signals, or $d=2$ to model signals dependent on location [1].
-Within the scope of this work, we assume that the domain of a digital signal is
-descrete, hence representing a finite number of isolated points.
+In theoretical terms, a signal is modeled within a vector space $\reals^d$,
+where $d$ represents the function's domain. Commonly-used domains include $d=1$
+to model time series signals, or $d=2$ to model signals dependent on location
+[1].  Within the scope of this work, we assume that the domain of a digital
+signal is descrete, hence representing a finite number of isolated points.
 
 
 ## References

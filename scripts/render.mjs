@@ -1,8 +1,8 @@
 // @format
 import { readFileSync, writeFileSync } from "fs";
 
-import MarkdownIt from 'markdown-it';
-import mk from 'markdown-it-katex';
+import MarkdownIt from "markdown-it";
+import mk from "@iktakahiro/markdown-it-katex";
 
 const md = new MarkdownIt();
 md.use(mk);
@@ -18,7 +18,7 @@ const doc = `
     <meta charset="utf-8"/>
     <title>Simple Signal Replication Protocol Specification</title>
     <link rel="stylesheet" href="./katex.min.css">
-    <link rel="stylesheet" href="./github-markdown.css">
+    <link rel="stylesheet" href="./github-markdown.min.css">
   </head>
   <body>
     ${rendered}
