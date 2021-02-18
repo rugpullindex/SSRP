@@ -20,6 +20,11 @@ const doc = `
     <title>Simple Signal Replication Protocol Specification</title>
     <link rel="stylesheet" href="./katex.min.css">
     <link rel="stylesheet" href="./github-markdown.min.css">
+    <style>
+      body {
+        max-width: 80ch;
+      }
+    </style>
   </head>
   <body>
     ${rendered}
