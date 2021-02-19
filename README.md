@@ -6,12 +6,14 @@ This repository contains the specification for the Simple Signal Replication Pro
 
 - Specification: https://timdaub.github.io/SSRP/
 - Source: [./SOURCE.md](./SOURCE.md)
+- Status: Work in Progress
 
 ## Contributing
 Install the rendering suite using:
 
 ```bash
-# git clone and cd in dir
+$ git clone git@github.com:TimDaub/SSRP.git
+$ cd SSRP
 $ npm i
 ```
 
