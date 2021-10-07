@@ -1,14 +1,87 @@
-# SSRP - Simple Signal Replication Protocol
+# SSSP - Simple Signal Sharing Protocol
 
 ## Abstract
 
-The Simple Signal Replication Protocol is an application-level protocol with
-the lightness and speed necessary for distributed and collaborative information
-systems. It is a generic, stateless and asynchronous protocol which can be used
-for many tasks, such as lossless signal replication or querying for subsets of
-signals. It's asynchronous and stateless properties allows SSRP peers to update
-their replicas independently and concurrently without coordination between
-replicas. SSRP is built on top of HTTP to make implementation accessible.
+The Simple Signal Sharing Protocol is an interactive application-level protocol
+making use of Ethereum smart contracts and the WebSocket standard for streaming
+signal data over a period of time between two participants; a signal streamer
+and a signal consumer.
+
+A trustless payment mechanism is the core of the protocol; allowing the signal
+streamer to gradually monetize their their signal and the signal consumer to
+receive access to novel data streams.
+
+## Overview
+
+Data sharing over the Internet has been made out to be technically challenging
+by a few emergent companies e.g. Ocean Protocol, streamr and others. Key
+challenges include the pricing of a data set and the trustless and atomic swap
+of payment and data. Similarly, so called "data escapes" have been portrait as
+"deal breakers" in the space too.
+
+Having taken a look at some approaches to data sharing; we think there's still
+amazing potential to improve the space with actual technical innovation. In the
+following document; we hence like to introduce a simple Ethereum-based protocol
+that allows to parties to share data verifiably and gradually - hence reducing
+the risk of either party betraying the others.
+
+## Problem
+
+All anonymous data sharing protocols currently require two parties to trust
+each other. Indeed, totally anonymous sharing of data that involves crypto
+currencies is nearly impossible without accepting the risk of one party
+betraying the other. 
+
+For the scope of this work; we'd like to highlight two paths where data sharing
+can fail in traditional protocols.
+
+(1) Assuming that the data consumer pays the data publisher upfront; then the
+risk of the data publisher just sending a random set of zeros and ones is high
+and irretrivable. If e.g. on Ocean Protocol, I transferred some coins to a data
+publisher and then proceeded to download the data set; I'd have no option for
+recourse considering that anonymous users can enter data sets. Now, I'd have
+lost money and didn't receive any data.
+
+(2) Similarly, in the case that the data consumer pays the data publisher
+_after_ receiving the data; then the risk of the data consumer exit scaming the
+data publisher is high and irretrivable. If e.g on Ocean Protocol, I downloaded
+a data set from a publisher but then simply forgo payment afterwards - then the
+data publisher would have no option for recourse considering that I could have
+do all previous actions perfectly anonymous using e.g. the TOR network. Now I'd
+have the data set and it wouldn't have cost me any money.
+
+Being aware of these two scenario makes one realize that, in fact, the problem
+isn't an easy one to solve atomically either as we'd argue it's rather
+difficult to understand what equates a valuable data set.
+
+Humans are fundamentally not good at understanding large corpuses of data and
+so in cases where e.g. users download data sets; they may end up not being
+aware of its quality until they've done some tests.
+
+Hence, a key lesson that lies within the scope of this work, is that "shipping
+data sets in objectified containers" isn't the right conceptual metaphor for
+tackling the over all problem.
+
+Indeed, data is often portrait as lake, package, container, zip file, csv etc.
+But the reality of anyone working with data is that any point that makes a set
+of data can be viewed as its own self-contained set of data too. Hence, in
+future paragraphs of this work, we tend to favor the term "stream" or "signal"
+over data as they correctly identify data as time-continuos resource rather
+than one that is akin to an object.
+
+### Mechanism
+
+A smart contract hosted on an EVM-enabled platform like Ethereum allows a data
+publisher to offer a signal stream by publishing some basic meta data, e.g.:
+
+```
+{
+  stream: {
+    name: "ETH/USD"
+
+  }
+}
+```
 
 ## Definitions
 
